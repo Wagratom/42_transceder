@@ -1,13 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { CreateMessagenDto } from './dto/create-messagen.dto';
-import { UpdateMessagenDto } from './dto/update-messagen.dto';
-import { ManipulationDatabase } from './repository/manipulation.database';
-import { PrismaService } from './database/prisma.service';
+import { PrismaService } from "../database/prisma.service";
+import { CreateMessagenDto } from "../dto/create-messagen.dto";
+import { messagens } from '@prisma/client';
 
-@Injectable()
-export class MessagensService {
-	// constructor(private manipulationDatabase: ManipulationDatabase) { }
-	constructor(private prismaService: PrismaService) {}
+export class ManipulationDatabase {
+	constructor(private prismaService: PrismaService) { }
 
 	//##########################################################################
 	//      Bloco de codigo para Criar um novo chat ou adicionar uma mensagem  #
@@ -18,6 +14,7 @@ export class MessagensService {
 		const chat = await this.prismaService.privateChat.findUnique({
 			where: { stringKey: key },
 		});
+		console.log("wallas");
 		return chat;
 	}
 
@@ -27,6 +24,7 @@ export class MessagensService {
 		const newChat = await this.prismaService.privateChat.create({
 			data: { stringKey: key },
 		});
+		console.log(newChat);
 		return newChat;
 	}
 
@@ -48,8 +46,7 @@ export class MessagensService {
 
 		if (chat) {
 			await this.addMessageToChat(createMessageDto, chat.id);
-		}
-		else {
+		} else {
 			const newChat = await this.createNewChat(
 				createMessageDto.username1,
 				createMessageDto.username2
@@ -58,16 +55,10 @@ export class MessagensService {
 		}
 	}
 
-	create(createMessagenDto: CreateMessagenDto) {
-		return this.addNewMessage(createMessagenDto)
-	}
-
-
-
 	//##########################################################################
 	//      Bloco de codigo para obter todos os chats e mensagens de um chat   #
 	//##########################################################################
-	async getAllMessagesInChat(username1: string, username2: string) {
+	async getAllMessagesInChat(username1: string, username2: string): Promise<messagens[]> {
 		const chat = await this.getChat(username1, username2);
 
 		if (!chat) {
@@ -84,23 +75,5 @@ export class MessagensService {
 		});
 		return messages;
 	}
-
-	findAll(username1: string, username2: string) {
-		return this.getAllMessagesInChat(
-			username1,
-			username2
-		)
-	}
-
-	// findOne(id: number) {
-	// 	return `This action returns a #${id} messagen`;
-	// }
-
-	// update(id: number, updateMessagenDto: UpdateMessagenDto) {
-	// 	return `This action updates a #${id} messagen`;
-	// }
-
-	// remove(id: number) {
-	// 	return `This action removes a #${id} messagen`;
-	// }
 }
+

@@ -10,7 +10,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Chat {
+model privateChat {
   id         Int     @default(autoincrement()) @id
   stringKey  String  @unique
   posts messagens[]
@@ -21,6 +21,6 @@ model messagens {
   username  String
   message   String
   data      DateTime @default(now())
-  author    Chat?    @relation(fields: [authorId], references: [id])
+  author    privateChat?    @relation(fields: [authorId], references: [id])
   authorId  Int?
 }

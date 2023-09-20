@@ -1,0 +1,11 @@
+# POST http://localhost:3000/messagens
+# Content-Type: application/json
+
+# {
+# 	"username1": "John",
+# 	"username2": "Doe",
+# 	"messagen": "whia your wallas?"
+# }
+
+
+GET http://localhost:3000/messagens?username1=John&username2=Doe
