@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Chat {
+  id    Int     @default(autoincrement()) @id
+  key  String  @unique
+  posts Message[]
+}
+
+model Message {
+  id        Int      @default(autoincrement()) @id
+  username  String
+  message   String
+  hours     String
+  data      DateTime @default(now())
+  author    Chat?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+}
