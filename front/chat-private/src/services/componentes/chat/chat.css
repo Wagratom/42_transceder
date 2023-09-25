@@ -13,9 +13,14 @@ body {
   background-color: #170931;
 }
 
+.chat {
+  height: 100vh;
+  width: 35vw;
+}
+
 .chat input {
 	border-color: transparent;
-  background-color: transparent;
+	background-color: transparent;
 	outline: none;
 	width: 100%;
 }
@@ -23,7 +28,6 @@ body {
 .message {
   margin-bottom: 20px;
 }
-
 
 .message p {
   font-size: 18px;

@@ -1,8 +1,9 @@
 import { BsPersonAdd } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
 import npcImage from '../../npc.jpg';
+import './listFriends.css'
 
-function ListFriends({getChat}) {
+function ListFriends({handleOpenChat}) {
 
   return (
 	<div className='friends'>
@@ -30,24 +31,24 @@ function ListFriends({getChat}) {
 
         <div className='list-friends mt-3'>
           <ul>
-            <li onClick={() => getChat('Username1')}>
+            <li onClick={() => handleOpenChat('miguel')}>
               <img src={npcImage} alt='' />
               <div className='ms-2'>
-                <p>Username1</p>
+                <p>miguel</p>
                 <p>online</p>
               </div>
             </li>
-            <li onClick={() => getChat('Username2')}>
+            <li onClick={() => handleOpenChat('Armando')}>
               <img src={npcImage} alt='' />
               <div className='ms-2'>
-                <p>Username2</p>
+                <p>Armando</p>
                 <p>online</p>
               </div>
             </li>
-            <li onClick={() => getChat('Username3')}>
+            <li onClick={() => handleOpenChat('Jacinto')}>
               <img src={npcImage} alt='' />
               <div className='ms-2'>
-                <p>Username3</p>
+                <p>Jacinto</p>
                 <p>online</p>
               </div>
             </li>

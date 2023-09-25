@@ -7,7 +7,7 @@ import './chat.css';
 
 function formattedResponseAPI(responseAPI, usernameUser) {
 	const blockMessagens = [];
-	let messageAux = "";
+	let messageAux = [];
 	let lastUsernameMessage = null;
 
 	for (const message of responseAPI) {
@@ -16,7 +16,7 @@ function formattedResponseAPI(responseAPI, usernameUser) {
 		}
 
 		if (lastUsernameMessage === message.username) {
-			messageAux += '<br />' + message.message;
+			messageAux.push(<p>{message.message}</p>);
 		}
 		else {
 			if (lastUsernameMessage === usernameUser) {
@@ -25,7 +25,8 @@ function formattedResponseAPI(responseAPI, usernameUser) {
 			else {
 				blockMessagens.push(ChatMessageApiFriend(messageAux));
 			}
-			messageAux = message.message;
+			messageAux = [];
+			messageAux.push(<p>{message.message}</p>);
 			lastUsernameMessage = message.username;
 		}
 	}
@@ -39,20 +40,17 @@ function formattedResponseAPI(responseAPI, usernameUser) {
 	return blockMessagens;
 }
 
-function OpenChat() {
+function OpenChat({friendSelected}) {
 	const response = mockedResponseApi();
-	const usernameFriend = 'John';
 	const usernameUser = 'miguel';
 
 	return (
-		<div className="d-flex flex-column justify-content-end w-25">
-			<div className='chat' id='chat'>
-				{ChatTitleChat(usernameFriend)}
-				<div className="p-5" id='messagens'>
-					{formattedResponseAPI(response, usernameUser)}
-				</div>
-				{ChatButtonSend()}
+		<div className='chat d-flex flex-column justify-content-end' id='chat'>
+			{ChatTitleChat(friendSelected)}
+			<div className="p-5" id='messagens'>
+				{formattedResponseAPI(response, usernameUser)}
 			</div>
+			{ChatButtonSend()}
 		</div>
 	);
 }
