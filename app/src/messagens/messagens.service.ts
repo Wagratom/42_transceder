@@ -63,7 +63,6 @@ export class MessagensService {
 	}
 
 
-
 	//##########################################################################
 	//      Bloco de codigo para obter todos os chats e mensagens de um chat   #
 	//##########################################################################

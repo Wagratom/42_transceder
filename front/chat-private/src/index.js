@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './chat.css';
-import './list-friends.css';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -3,4 +3,4 @@ const dataUsers = {
 	friends: 'Amigos',
 };
 
-export default dataUsers; // Exporta o objeto strings
+export {dataUsers};
